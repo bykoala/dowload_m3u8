@@ -176,6 +176,11 @@ func tsMerge() (err error) {
 
 //下载Ts文件
 func dowload() {
+	defer func(){
+		if err:=recover();err!=nil{
+			fmt.Println("dowload panic",err)
+		}	
+	}()
 	for ts := range TsChan {
 		if ts.isDownload == true {
 			continue
